@@ -16,7 +16,7 @@ Apache Burr is an agentic AI framework that makes use of state machine. I am exc
 ---
 
 ## Understanding the Issue
-They want a complete ML training example on their framework. A template notebook with a training skeleton is included. I need to fill in the notebook with a training example downloading a real dataset like MNIST and then adding a Epoch-based training loop Human-in-the-loop pause/resume training option.
+They want a complete ML training example on their framework. A template notebook with a training skeleton is included. I need to fill in the notebook with a training example including downloading a real dataset like MNIST and then adding a Epoch-based training loop and Human-in-the-loop pause/resume training option.
 
 ### Problem Description
 
