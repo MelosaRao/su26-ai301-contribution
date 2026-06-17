@@ -15,24 +15,21 @@ Apache Burr is an agentic AI framework that makes use of state machine. I am exc
 
 ---
 
-## Understanding the Issue
+## Understanding the Issue and Problem Description
 They want a complete ML training example on their framework. A template notebook with a training skeleton is included. I need to fill in the notebook with a training example including downloading a real dataset like MNIST and then adding a Epoch-based training loop and Human-in-the-loop pause/resume training option.
 
-### Problem Description
-
-[In your own words, what's broken or missing?]
 
 ### Expected Behavior
 
-[What should happen?]
+A training loop should run on sample dataset with adjustable parameters and human in loop options.
 
 ### Current Behavior
-
-[What actually happens?]
+Only template code is included so it does not run.
 
 ### Affected Components
+https://github.com/MelosaRao/burr/tree/main/examples
+The main issue is just reproducing and filling in example usage template.
 
-[Which parts of the codebase are involved?]
 
 ---
 
@@ -40,19 +37,16 @@ They want a complete ML training example on their framework. A template notebook
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+Created a virtual environment and installed requirements.txt
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Forked and cloned gitbub repo
+2. Currently working through code base to figure out training modules and methods
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
-- **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+- **Commit showing reproduction:** :  https://github.com/MelosaRao/burr
 
 ---
 
