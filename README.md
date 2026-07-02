@@ -3,7 +3,8 @@
 
 **Contribution Number:** 1  
 **Student:** Melosa Rao
-**Issue:**  [BUG] Agno autolog spans do not nest under manual span creation https://github.com/mlflow/mlflow/issues/24241
+**Issue:**  [BUG] Agno autolog spans do not nest under manual span creation 
+https://github.com/mlflow/mlflow/issues/24241
 **Status:** Phase I [In Progress / Complete] 
 
 ---
@@ -24,6 +25,7 @@ The Agno spans do not nest under the manual span. Instead, two completely discon
 
 
 ### Affected Components
+
 area/tracing: MLflow Tracing features and LLM tracing functionality
 Agno autolog integration (mlflow.agno.autolog())
 OpenTelemetry tracer provider resolution
