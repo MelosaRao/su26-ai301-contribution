@@ -3,8 +3,8 @@
 
 **Contribution Number:** 1  
 **Student:** Melosa Rao
-**Issue:**  [BUG] Agno autolog spans do not nest under manual span creation
-**Status:** Phase I [In Progress / Complete]
+**Issue:**  [BUG] Agno autolog spans do not nest under manual span creation https://github.com/mlflow/mlflow/issues/24241
+**Status:** Phase I [In Progress / Complete] 
 
 ---
 
@@ -38,7 +38,7 @@ Created a virtual environment and installed requirements.txt
 ### Steps to Reproduce
 
 1. Forked and cloned gitbub repo
-2. Currently working through code base to figure out training modules and methods
+2. Currently working through code base to figure out tracing issue
 
 ### Reproduction Evidence
 
