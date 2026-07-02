@@ -25,9 +25,9 @@ The Agno spans do not nest under the manual span. Instead, two completely discon
 
 
 ### Affected Components
-- area/tracing: MLflow Tracing features and LLM tracing functionality
-- Agno autolog integration (mlflow.agno.autolog())
-- OpenTelemetry tracer provider resolution
+1. area/tracing: MLflow Tracing features and LLM tracing functionality
+2. Agno autolog integration (mlflow.agno.autolog())
+3. OpenTelemetry tracer provider resolution
 ---
 
 ## Reproduction Process
