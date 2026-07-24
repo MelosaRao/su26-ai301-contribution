@@ -1,4 +1,134 @@
 # su26-ai301-contribution
+
+# Contribution #1: Print-Friendly CSS for Outage Reports and SLA Summaries
+
+**Contribution Number:** 1
+
+**Student:** Melosa Rao
+
+**Issue:** [FE-W6-013] Add print-friendly CSS for outage reports and SLA summaries https://github.com/OpSoll/noc-iq-fe/issues/348
+
+**Status:** Phrase 4 - Complete, PR submitted
+
+---
+
+## Why I Chose This Issue
+
+This issue was well-scoped for a first contribution: a clear, self-contained frontend task (CSS + one small reusable component) with explicit acceptance criteria and implementation guidance already laid out in the issue body. It was labeled `good first issue` and `ready-to-pick-up`, meaning it could be self-assigned without waiting on maintainer triage.
+
+---
+
+## Understanding the Issue and Problem Description
+
+### Expected Behavior
+
+Ops managers should be able to print (or save as PDF) an outage detail page or the payments/SLA summary page and get a clean, readable report: page header with org name and date, full outage/SLA data in a readable format, and none of the surrounding app chrome. A `Print Report` button on both pages should trigger `window.print()`. Multi-page print output should handle table row page breaks cleanly (`page-break-inside: avoid`), and styles should render correctly in both Chrome and Firefox print preview.
+
+### Current Behavior
+
+The app had no print styles at all. Printing any page included the top navigation bar, all action buttons (Edit/Resolve/Delete/Export/etc.), filter controls, pagination controls, and toast notifications — wasting paper and burying the actual data ops managers need for post-mortems and SLA review sessions.
+
+### Affected Components
+
+1. `src/app/globals.css` — no `@media print` rules existed
+2. `src/app/outages/[id]/page.tsx` — outage detail page, needed a Print button and print-safe markup
+3. `src/components/payments/payments-view.tsx` — SLA/payments summary page, same needs
+4. New component: `src/components/shared/PrintButton.tsx`
+
+---
+
+## Reproduction Process
+
+### Environment Setup
+
+- Forked and cloned `noc-iq-fe` on a Windows machine; installed Node.js 18+, ran `npm install`, copied `.env.example` to `.env.local`.
+- Since several pages require authentication, also cloned the sibling backend repo `noc-iq-be` (not forked — no changes needed there) and set up a Python virtual environment, installed `requirements.txt`, and configured `.env`.
+
+### Steps to Reproduce
+
+1. Ran `npm run dev` and opened any page in the app (e.g., an outage detail page or `/payments`).
+2. Opened the browser print dialog (`Ctrl+P`) or used Chrome DevTools' "Emulate CSS media: print" mode.
+3. Observed that navigation, buttons, filters, and pagination all appeared in the print preview alongside the report content, with no visual distinction from the on-screen UI
+
+---
+
+## Solution Approach
+
+### Analysis
+
+The root cause was that print styling had never been implemented. There was no `@media print` block in `globals.css`, no convention for marking an element as "don't print this," and no reusable print-trigger component. 
+
+### Proposed Solution
+
+1. Add an `@media print` block to `globals.css` that hides `nav`, `footer`, and anything marked with a `.no-print` utility class or `[data-no-print]` attribute; strips animations/transitions; forces black-on-white text for readability; and adds `.print-avoid-break` / `.print-page-break` utility classes for controlling table/section page breaks.
+2. Create a small, reusable `PrintButton` component 
+3. Add `PrintButton` to the outage detail page and the payments (SLA summary) page
+
+### Implementation Plan
+
+1. Append an `@media print` section to `globals.css` (hide nav/footer/`.no-print`, strip animation, force print-safe colors, add break-control utility classes).
+2. Add `src/components/shared/PrintButton.tsx` as a small client component with no required props.
+3. Wire `PrintButton` into `src/app/outages/[id]/page.tsx` and `src/components/payments/payments-view.tsx`.
+4. Mark the action-button rows, filter bar, and pagination controls on both pages with `no-print` so they disappear from the printed/PDF output.
+5. Manually verify with Chrome DevTools print emulation.
+
+---
+### Manual Testing
+
+Verified using Chrome DevTools on both the login page (to confirm the base `@media print` rules apply globally) and the `/payments` page. 
+
+Full end-to-end testing against live outage/payment data was blocked by an unrelated, pre-existing backend bug (`sqlalchemy.exc.AmbiguousForeignKeysError` between `sla_results` and `sla_disputes` in `noc-iq-be`) that prevents account registration and data creation; this was confirmed as out of scope for this issue and not something introduced by this change.
+
+---
+
+## Implementation Notes
+
+- Set up local dev environment on Windows for both `noc-iq-fe` and `noc-iq-be` (Node.js install, Python venv, `.env` configuration).
+- Hit and resolved several environment issues along the way: a pre-existing React context crash (`useAccessibility` used outside its provider in `src/app/layout.tsx`), a missing `redis` dependency, a missing PostgreSQL driver (switched `DATABASE_URL` to SQLite for local testing), and a Pydantic settings validation error caused by placeholder Stellar/blockchain config values.
+- Implemented the `@media print` CSS block, the `PrintButton` component, and wired it into both target pages.
+- Added `no-print` classes to the action buttons, filter bar, pagination controls, and the inline edit form after noticing they were still appearing in the print preview during manual testing.
+- Hit a runtime `Module not found: Can't resolve 'lucide-react'` error; resolved with `npm install lucide-react`.
+- Encountered a backend crash (`sqlalchemy.exc.AmbiguousForeignKeysError`) that blocks registration/login and outage creation; confirmed this is a pre-existing, unrelated bug and worked around it for testing purposes by temporarily bypassing the auth redirect in `RouteGuard.tsx` (reverted before committing).
+
+
+**Maintainer Feedback:**  awaiting review
+
+**Status:** Awaiting review
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# su26-ai301-contribution
 # Contribution [#]: Agno autolog spans
 
 **Contribution Number:** 1  
